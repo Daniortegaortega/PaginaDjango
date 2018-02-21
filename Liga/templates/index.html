@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+	{% extends "navbar.html" %}
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+    {% block css %}
+	<link href="{% static 'css/index.css' %}" rel="stylesheet">
+    <title>Inicio</title>
+    {% endblock %}
+</head>
+
+
+	<body>
+    {% block content %}
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="{% static 'images/imgCarrusel/carrusel1.jpg' %}" alt="Los Angeles" style="width:100%;">
+                        <div class="carousel-caption">
+                            <h3>CS-GO</h3>
+                            <p>El futuro de los e-sports</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <img src="{% static 'images/imgCarrusel/carrusel2.jpg' %}" alt="Chicago" style="width:100%;">
+                        <div class="carousel-caption">
+                            <h3>MLG</h3>
+                            <p>El mayor campeonato a nivel profesional</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <img src="{% static 'images/imgCarrusel/carrusel3.png' %}" alt="New York" style="width:100%;">
+                        <div class="carousel-caption">
+                            <h3>ELEAGUE</h3>
+                            <p>La liga profesional de CSGO</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+       {% endblock %}
+	</body>
+</html>

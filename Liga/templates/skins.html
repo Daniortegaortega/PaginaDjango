@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+{% extends "navbar.html" %}
+	<head>
+		{% load staticfiles %}
+
+		{% block css %}
+		<title> SKINS </title>
+		<link 	href="{% static 'css/cssSkins.css' %}" rel="stylesheet" />
+		{% endblock %}
+	</head>
+	<body>
+		{% block content %}
+			<div class="cuerpo1">
+				{% for s in skins %}
+					<div class="skins">
+						<div class="skin1">
+							<h2 class="skin">{{ s.nombre }}</h2>
+							<p class="parte1">{{ s.tipo }}</p>
+							<p class="parte2dragon">Souvenir Available </p>
+							<a target="_blank" href="{{ s.imagen.url}}">
+								<img src="{{ s.imagen.url }}" width="300" height="200">
+							</a>
+							<p class="parte3">{{ s.precio }}</p>
+							<p class="parte4dragon">{{ s.coleccion }}</p>
+							<div class="desc1">
+								<form action="{% url 'comprarSkin' s.id request.user.id %}">
+									{% csrf_token %}
+									{% for u in usuario %}
+										{% if u.codigo == request.user %}
+											{% if u.skin == None %}
+												{% if u.saldo > s.precio %}
+								  					<input class="caja" type="submit" value="Comprar">
+												{% else %}
+													<p class="parte5">Saldo insuficiente</p>
+												{% endif %}
+								  			{% endif %}
+										{% endif %}
+									{% endfor %}
+									<input class="caja" type="submit" value="Detalles">
+								</form>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% endblock %}
+	</body>
+</html>

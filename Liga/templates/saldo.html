@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Saldo</title>
+		{% load staticfiles %}
+		{% load crispy_forms_tags %}
+		<meta charset="UTF-8">
+		<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+		<link href="{% static 'css/registrar.css' %}" rel="stylesheet">
+		<link   rel="icon" type="image/png" href="{% static 'images/case.png' %}"  />
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="card card-login mx-auto mt-5">
+				<div class="card-header">Introducir saldo</div>
+				<div class="card-body">
+					<form action="{% url 'saldo' request.user.id %}" method="POST">
+						<div class="">
+							<div class="form-row">
+								<div class="col-md-12">
+									{{ form|crispy }}
+									{% for x in context %}
+										{{ x }}
+									{% endfor %}
+								</div>
+								{% csrf_token %}
+							</div>
+						</div><br>
+						<div class="text-center">
+							<button class="btn btn-primary btn-block" name="registrar">Introducir</button>
+							<a class="d-block small mt-3" href="{% url 'index' %}">Volver</a>
+						</div>
+					</form><br>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

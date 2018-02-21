@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends "navbar.html" %}
+	<html lang="en">
+		<head>
+			{% load staticfiles %}
+			<title>Vender</title>
+			{% block css %}
+			<link rel="stylesheet" type="text/css" href="{% static 'css/vender.css' %}">
+			{% endblock %}
+		</head>
+	<body>
+	{% block content %}
+        <div class="container general">
+            {% for x in object_list %}
+                {% if x.codigo == request.user %}
+                    {% if x.skin != None %}
+                <div class="card centrar" style="width: 38rem;">
+                    <ul class="list-group list-group-flush datos">
+                        <li class="list-group-item"><img class="card-img-top" src="{{x.skin.imagen.url}}" width="100%" height="300"></li>
+                        <li class="list-group-item">Nombre: {{ x.skin.nombre }}</li>
+                        <li class="list-group-item">Tipo: {{ x.skin.tipo }}</li>
+                        <li class="list-group-item">Coleccion: {{ x.skin.coleccion }}</li>
+                        <li class="list-group-item">Precio: {{ x.skin.precio }}</li>
+                        <li class="list-group-item">
+                            <form action="{% url 'venderSkin' request.user.id %}" method="POST">
+                                {% csrf_token %}
+                                <button class="btn btn-primary">Vender</button>
+                            </form>
+                            {% for x in context %}
+                                {{ x }}
+                            {% endfor %}
+                        </li>
+                    </ul>
+                </div>
+                {% else %}
+                    <div>
+                        <h1>Atención:  </h1>
+                        <h3>Para participar en nuestras ligas debe de tener una skin en su inventario.</h3>
+                        <h3><a href="{% url 'skins' %}">Click aqui</a> y consulte nuestro amplio catálogo</h3>
+                    </div>
+                {% endif %}
+            {% endif %}
+            {% endfor %}
+        </div>
+
+    {% endblock %}
+    </body>
+</html>

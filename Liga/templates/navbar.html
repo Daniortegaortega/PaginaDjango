@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			{% load staticfiles %}
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+			<link 	href="{% static 'css/cssNavbar.css' %}" rel="stylesheet" />
+			<link 	href="{% static 'css/cssFooter.css' %}" rel="stylesheet" />
+			<link   rel="icon" type="image/png" href="{% static 'images/case.png' %}"  />
+			{% block css %}
+			{% endblock %}
+		</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="{% url 'index' %}">CSKIN</a>
+					</div>
+					<ul class="nav navbar-nav">
+						{% if user.is_authenticated %}
+							<li><a class="" href="{% url 'ligas' %}">Ligas</a></li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Skins
+								<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="{% url 'skins' %}">Comprar</a></li>
+									<li><a href="{% url 'vender' %}">Vender</a></li>
+								</ul>
+							</li>
+						{% endif %}
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						{% if user.is_authenticated %}
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.username }}
+								<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="{% url 'perfil' %}">Perfil</a></li>
+									<li><a href="{% url 'saldo' request.user.id %}">Ingresar saldo</a></li>
+									<li><a href="{% url 'username' request.user.id %}">Cambiar username</a></li>
+									<li><a href="{% url 'contactar' %}">Contactar</a></li>
+									<li><a href="{% url 'logout' %}">Cerrar sesion</a></li>
+								</ul>
+							</li>
+						{% else %}
+							<li><a href="{% url 'registro' %}"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>
+							<li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						{% endif %}
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+			{% block content %}
+
+			{% endblock %}
+	</body>
+{% include "footer.html" %}
+</html>

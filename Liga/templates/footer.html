@@ -1,0 +1,49 @@
+<html>
+<head>
+	{% load staticfiles %}
+	<link 	href="{% static 'css/cssFooter.css' %}" rel="stylesheet" />
+	<script src="{% static 'js/funcion.js' %}"> </script>
+</head>
+<footer class="pie">
+	<div class="container-fluid">
+		<div class="footer1">
+			<p class="part1"> Acerca de: </p>
+			<p class="part2">Las presentes condiciones generales de uso del portal regulan el acceso y la utilización del portal, incluyendo los contenidos y los servicios puestos a disposición de los usuarios. No obstante, el acceso y la utilización de ciertos contenidos y/o servicios puede encontrarse sometido a determinadas condiciones específicas.</p>
+		</div>
+		<div class="footer1">
+			<p class="part1"> Siguenos: </p><br>
+			<ul>
+				<li class="imagenes">
+					<a href="https://es-es.facebook.com/"><img src="{% static 'images/imgFooter/facebook.png' %}" width="50" height="50"></a>
+				</li>
+				<li class="imagenes">
+					<a href="https://twitter.com/"><img src="{% static 'images/imgFooter/twitter.png' %}" width="50" height="50"></a>
+				</li>
+				<li class="imagenes">
+					<a href="https://www.instagram.com/?hl=es"><img src="{% static 'images/imgFooter/instagram.png' %}" width="50" height="50"></a>
+				</li>
+				<li class="imagenes">
+					<a href="https://plus.google.com/?hl=es"><img src="{% static 'images/imgFooter/google-plus.png' %}" width="50" height="50"></a>
+				</li>
+			</ul>
+		</div>
+		<div class="footer1">
+			<p class="part1"> Contacto: </p><br>
+			<p class="part2"><img class="imagen" src="{% static 'images/imgFooter/telf.png' %}" width="25" height="25"> Horario de 9:00 a 22:00 ininterrumpido
+			<button class="boton" onclick="mostrar(this); return false">
+				<span class="caret" style="color:white;"></span></button>
+				<div id="oculto" style="visibility:hidden">
+					<p class="part3">(+34)628760730</p>
+				</div>
+			</p>
+			<p class="part2"><img class="imagen" src="{% static 'images/imgFooter/email.png' %}" width="25" height="25"> 24 horas del dia
+			<button class="boton" onclick="mostrar2(this); return false">
+				<span class="caret" style="color:white;"></span></button>
+				<div id="oculto2" style="visibility:hidden">
+					<p class="part3">cskin.django@gmail.com</p>
+				</div>
+			</p>
+		</div>
+	</div>
+</footer>
+</html>

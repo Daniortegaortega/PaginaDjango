@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login</title>
+		{% load staticfiles %}
+		{% load crispy_forms_tags %}
+		<meta charset="UTF-8">
+		<link   rel="icon" type="image/png" href="{% static 'images/case.png' %}"  />
+		<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+		<link href="{% static 'css/registrar.css' %}" rel="stylesheet">
+
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="card card-login mx-auto mt-5">
+				<div class="card-header">Iniciar sesion</div>
+				<div class="card-body">
+					<form action="{% url 'login' %}" method="POST">
+						<div class="">
+							<div class="form-row">
+								<div class="col-md-12">
+									{{ form|crispy }}
+								</div>
+								{% csrf_token %}
+							</div>
+						</div><br>
+
+						<div class="text-center">
+							<button class="btn btn-primary btn-block" name="registrar">Iniciar Sesion</button>
+							<a class="d-block small mt-3" href="{% url 'index' %}">Volver</a>
+						</div>
+					</form><br>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% extends "navbar.html" %}
+	<html lang="en">
+		<head>
+			{% load staticfiles %}
+			{% load crispy_forms_tags %}
+			{% load qr_code %}
+			<title>Perfil</title>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			{% block css %}
+			<link rel="stylesheet"  href="{% static 'css/cssPerfilUser.css' %}">
+			{% endblock %}
+		</head>
+	<body>
+	{% block content %}
+		<div class="container principal">
+			<div class="col-md-12">
+				<table class="table table-hover">
+						<h1 class="ligas">Datos</h1>
+					<thead>
+						<tr class="danger">
+							<th>Nombre</th>
+							<th>Apellidos</th>
+							<th>Nombre Usuario</th>
+							<th>Saldo</th>
+							<th>Telefono</th>
+							<th>Email</th>
+							<th>Numero de cuenta</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for u in usuario %}
+							{% if u.codigo == request.user %}
+								<tr class="success">
+									<td>{{ u.nombre }}</td>
+									<td>{{ u.apellidos }}</td>
+									<td>{{ request.user.username }}</td>
+									<td>{{ u.saldo }} €</td>
+									<td>{{ u.telefono }}</td>
+									<td>{{ request.user.email }}</td>
+									<td>{% qr_from_text u.numero_cuenta size=4 %}</td>
+								</tr>
+							{% endif %}
+						{% endfor %}
+					</tbody>
+				</table><br><br><br>
+			</div>
+			<div class="col-md-12">
+				<table class="table table-hover">
+					<h1 class="ligas">Ligas</h1>
+					<thead>
+						<tr class="danger">
+							<th>Nombre</th>
+							<th>Categoria</th>
+							<th>Fecha de inscripcion</th>
+							<th>Coste inscripcion</th>
+							<th>Skin</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for u in usuario %}
+							{% for i in inscritas %}
+								{% if u.codigo == request.user %}
+									<tr class="success">
+										<td>{{ i.liga.nombre }}</td>
+										<td>{{ i.liga.categoria }}</td>
+										<td>{{ i.fecha }}</td>
+										<td>{{ i.liga.coste_inscripcion }} €</td>
+										<td>{{ i.usuario.skin }}</td>
+										<td>
+											<form action="{% url 'borrarLiga' i.liga.id request.user.id %}" method="POST">
+												{% csrf_token %}
+												<button class="btn btn-primary">Borrarse</button>
+											</form>
+										</td>
+									</tr>
+								{% endif %}
+							{% endfor %}
+						{% endfor %}
+					</tbody>
+				</table><br><br>
+			</div>
+		</div>
+	{% endblock %}
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+    <link href="{% static 'css/registro.css'%}">
+    <title>Registro de Jugadores</title>
+</head>
+    <body>
+        <h1>Registro</h1>
+        {% if form.errors %}
+        <p style="color: red;">Existe algun error en el formulario</p>
+        {% endif %}
+        <form action="" method="POST" enctype="multipart/form-data">
+            <table>
+                {{ form.as_table }}
+            </table>
+            {% csrf_token %}
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+.general{
+    margin-top:5%;
+    margin-bottom:14.5%;
+    text-align:center;
+}
+body{
+    color:black;
+    background-color: #581845;
+}
+tr{
+    font-size:23px;
+}
+.centrar{
+    text-align:center;
+    margin:auto;
+}
+.datos{
+    font-size:20px;
+}
